@@ -32,6 +32,10 @@ async function findAndDecrementCount(documentId) {
       return -1;
     }
 
+    if (document.countId <= 0) {
+      console.log('Document countId is already 0');
+      return -1;
+    }
     document.countId--;
     await document.save();
 
@@ -52,7 +56,7 @@ app.get('/', async (req, res) => {
   console.log(count)
   if (count <= 0) return res.send({ message: 'condition matched' })
 
-  axios.get('https://giddy-cyan-squirrel.cyclic.app/')
+  axios.get('http://localhost:3000/')
 
 });
 
